@@ -1,0 +1,406 @@
+1. Camel Case: https://www.hackerrank.com/challenges/camelcase/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import string
+
+# Complete the camelcase function below.
+def camelcase(s):
+    n = len(s)
+    count = 1
+    if n==0:
+        return 0
+    for i in range(n):
+        if str.isupper(s[i]):
+            count += 1
+    return count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = camelcase(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+2. Apple and Orange: https://www.hackerrank.com/challenges/apple-and-orange/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the countApplesAndOranges function below.
+def countApplesAndOranges(s, t, a, b, apples, oranges):
+    count_apples = 0
+    count_oranges = 0
+    for i in apples:
+        i += a
+        if i>=s and i<=t:
+            count_apples += 1  
+    for j in oranges:
+        j += b
+        if j>=s and j<=t:
+            count_oranges += 1
+    print(count_apples)
+    print(count_oranges)
+
+if __name__ == '__main__':
+    st = input().split()
+
+    s = int(st[0])
+
+    t = int(st[1])
+
+    ab = input().split()
+
+    a = int(ab[0])
+
+    b = int(ab[1])
+
+    mn = input().split()
+
+    m = int(mn[0])
+
+    n = int(mn[1])
+
+    apples = list(map(int, input().rstrip().split()))
+
+    oranges = list(map(int, input().rstrip().split()))
+
+    countApplesAndOranges(s, t, a, b, apples, oranges)
+
+3. Cat and Mouse: https://www.hackerrank.com/challenges/cats-and-a-mouse/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the catAndMouse function below.
+def catAndMouse(x, y, z):
+    if abs(x-z) > abs(y-z):
+        return "Cat B"
+    elif abs(x-z) < abs(y-z):
+        return "Cat A"
+    else:
+        return "Mouse C"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        xyz = input().split()
+
+        x = int(xyz[0])
+
+        y = int(xyz[1])
+
+        z = int(xyz[2])
+
+        result = catAndMouse(x, y, z)
+        print(result)
+        fptr.write(result + '\n')
+
+    fptr.close()
+
+4. Sequence Equation: https://www.hackerrank.com/challenges/permutation-equation/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the permutationEquation function below.
+def permutationEquation(p,n):
+    temp = []
+    temp = sorted(p)
+    solution = []
+    for i in temp:
+        index1 = p.index(i)+1
+        index2 = p.index(index1)+1
+        solution.append(index2)
+    return solution
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    p = list(map(int, input().rstrip().split()))
+
+    result = permutationEquation(p,n)
+    print(result)
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+
+5. Library Fine: https://www.hackerrank.com/challenges/library-fine/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the libraryFine function below.
+def libraryFine(d1, m1, y1, d2, m2, y2):
+    if y1 == y2:
+        if m1 == m2:
+            if d1 == d2:
+                return 0
+            elif d2 >= d1:
+                    return 0
+            else:
+                return 15*(d1-d2)
+        elif m1 < m2:
+            return 0    
+        else:
+            return 500*(m1-m2)
+    elif y1 < y2:
+        return 0
+    else:
+        return 10000
+
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    d1M1Y1 = input().split()
+
+    d1 = int(d1M1Y1[0])
+
+    m1 = int(d1M1Y1[1])
+
+    y1 = int(d1M1Y1[2])
+
+    d2M2Y2 = input().split()
+
+    d2 = int(d2M2Y2[0])
+
+    m2 = int(d2M2Y2[1])
+
+    y2 = int(d2M2Y2[2])
+
+    result = libraryFine(d1, m1, y1, d2, m2, y2)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+6. Time Conversion: https://www.hackerrank.com/challenges/time-conversion/problem
+
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the timeConversion function below.
+#
+def timeConversion(s):
+    if s[-2:] =="AM" and s[:2] == "12":
+        return "00"+s[2:-2]
+    elif s[-2:] == "AM":
+        return s[:-2]
+    elif s[-2:] == "PM" and s[:2]=="12":
+        return s[:-2]
+    else:
+        return str(int(s[:2]) + 12) + s[2:8]
+
+if __name__ == '__main__':
+    f = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+    print(result)
+    f.write(result + '\n')
+
+    f.close()
+
+7. Utopian Tree: https://www.hackerrank.com/challenges/utopian-tree/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the utopianTree function below.
+def utopianTree(n):
+    i = n
+    if i == 0:
+        return 1
+    else:
+        if i%2==0:
+            return (1 + utopianTree(i-1))
+        else:
+            return (2 * utopianTree(i-1))
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        n = int(input())
+
+        result = utopianTree(n)
+        print(result)
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+8. Viral Advertising: https://www.hackerrank.com/challenges/strange-advertising/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the viralAdvertising function below.
+def viralAdvertising(n):
+    shared = []
+    liked = []
+    cumulative = []
+
+    shared.append(5)
+    liked.append(math.floor(5/2))
+    cumulative.append(liked[0])
+    print(math.floor(5/2))
+    for i in range(1,n):
+        shared.append(math.floor(shared[i-1] / 2) * 3)
+        liked.append(math.floor(shared[i] / 2))
+        cumulative.append(cumulative[i-1] + liked[i])
+#    print(shared)
+#    print(liked)
+#    print(cumulative)
+    return cumulative[n-1]
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    result = viralAdvertising(n)
+    print(result)
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+9. Electronic Shop: https://www.hackerrank.com/challenges/electronics-shop/problem
+
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the getMoneySpent function below.
+#
+def getMoneySpent(keyboards, drives, b):
+    maxans, ans = 0,-1
+    for i in keyboards:
+        for j in drives:
+            if i+j == b:
+                ans = i+j
+                return ans
+            elif (i+j>=maxans and i+j<=b):
+                maxans = i+j
+                ans = maxans
+    return ans
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    bnm = input().split()
+
+    b = int(bnm[0])
+
+    n = int(bnm[1])
+
+    m = int(bnm[2])
+
+    keyboards = list(map(int, input().rstrip().split()))
+
+    drives = list(map(int, input().rstrip().split()))
+
+    #
+    # The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+    #
+
+    moneySpent = getMoneySpent(keyboards, drives, b)
+
+    fptr.write(str(moneySpent) + '\n')
+
+    fptr.close()
+
+10. Counting Valleys: https://www.hackerrank.com/challenges/counting-valleys/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the countingValleys function below.
+def countingValleys(n, s):
+    count = 0
+    valleys = 0
+    for i in range(0,n):
+        if s[i] == 'U':
+            count = count+1
+            if count == 0:
+                valleys = valleys + 1    
+        else:
+            count = count-1
+    return valleys
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    s = input()
+
+    result = countingValleys(n, s)
+    print(result)
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+
